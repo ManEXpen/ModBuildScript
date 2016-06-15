@@ -59,7 +59,7 @@ def print()
 end
 
 def build()
-system "cd "<< @@mod_dir << " & gradlew.bat build -Pmod_version=" << @@mod_version << " -Pmod_name=1.7.10-" << @@mod_name;
+system "chcp 65001 & cd "<< @@mod_dir << " & gradlew.bat build -Pmod_version=" << @@mod_version << " -Pmod_name=1.7.10-" << @@mod_name;
 end
 end
 
