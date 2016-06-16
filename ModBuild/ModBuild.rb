@@ -1,6 +1,23 @@
 require 'color_echo';
 
+def printhelp()
+    puts "+---------------------------+";
+    puts "|                           |";
+    puts "| XXXXXXXXXXXXXXXXXXXXXXXXX |";
+    puts "|X  ModVersionIncrimenter  X|";
+    puts "| XXXXXXXXXXXXXXXXXXXXXXXXX |";
+    puts "|                           |";
+    puts "+---------------------------+";
 
+    puts "まずbuild.gradleの中をそれぞれ下記の用に変更してください"
+    puts "archivesBaseName = \"${mod_name}\"";
+    puts "version = \"${mod_version}\"";
+    puts;
+    puts "そしてこのプログラムを起動するときの第一引数にMod作成フォルダのルートディレクトリを、"
+    puts "第二引数に出力時のModの名前、";
+    puts "第三引数にカウント最初の番号を入力してください。";
+    puts "(二回目は入力しなくてもデータが作成されていればそこから読み込まれます)";
+end
 
 class Modbuild
 
@@ -67,13 +84,14 @@ end
 CE.fg(:cyan);
 puts "ビルド開始";
 
-if ARGV[0] != nil then
+if (ARGV[0] != nil && ARGV[0] != "--help") then
 main = Modbuild.new();
 main.filewriteandread();
 main.build();
 else
+    printhelp();
     CE.fg(:red);
     puts "ビルドしたいMod作成フォルダのディレクトリをしてしてください";
     CE.fg(:white);
+    exit(1);
 end
-
